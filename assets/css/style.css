@@ -1,0 +1,19 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+.header {
+    background-color: rgb(62, 62, 214);
+    
+}
+.header h1 {
+    text-align: center;
+    padding: 2vh;
+    color: white;
+}
+.container {
+    display:flex;
+    flex-direction: column;
+}
+
