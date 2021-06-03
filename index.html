@@ -26,28 +26,20 @@
                 <h1>Weather Dashboard</h1>
 
             </div>
-            
+            <div class="row">
                 <div class="col-lg-3">
                     <div class="card">
                             <h1 class="card-title">Search for city:</h1>
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Mcallen" aria-label="Username" aria-describedby="basic-addon1">
+                            <input id="searchArea" type="text" class="form-control searchArea" placeholder="Mcallen" aria-label="CityName" aria-describedby="basic-addon1">
                         </div>
-                            <a href="#" class="btn btn-primary">Search</a>
-                            <li class="list-group-item">San Antonio</li>
-                            <li class="list-group-item">Corpus Christi</li>
-                            <li class="list-group-item">Dallas</li>
-                            <li class="list-group-item">Las Vagas</li>
-                            <li class="list-group-item">Austin</li>
-                            <li class="list-group-item">Brownsville</li>
-                            <li class="list-group-item">South Padre Island</li>
-                            <li class="list-group-item">New York</li>
-                        </div>
+                            <a id="search" class="btn btn-primary search">Search</a>
+                           
                     </div>
                 </div>
 
-                
-                    <div class="col-lg-9">
+                <div class="column">
+                    <div class="col-lg-14">
                         <div class="card-body">
                             <h1 class="card-header">City Name</h1>
                             <li class="list-group-item">Temp: </li>
@@ -56,51 +48,52 @@
                             <li class="list-group-item">UV index: </li>
                         </div>
                     </div>
-
+            
                     <div class="row forcast">
-                        <div class="col-md-2">
+                        <h5>5-Day Forcast</h5>
+                        <div class="col-lg-2.5">
                             <div class="card-body">
                                 <h1 class="card-header">Date</h1>
                                 <li class="list-group-item">Temp: </li>
-                                <li class="list-group-item">Wind </li>
+                                <li class="list-group-item">Wind: </li>
                                 <li class="list-group-item">Humidity: </li>
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-lg-2.5">
                             <div class="card-body">
                                 <h1 class="card-header">Date</h1>
                                 <li class="list-group-item">Temp: </li>
-                                <li class="list-group-item">Wind </li>
+                                <li class="list-group-item">Wind: </li>
                                 <li class="list-group-item">Humidity: </li>
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-lg-2.5">
                             <div class="card-body">
                                 <h1 class="card-header">Date</h1>
                                 <li class="list-group-item">Temp: </li>
-                                <li class="list-group-item">Wind </li>
+                                <li class="list-group-item">Wind: </li>
                                 <li class="list-group-item">Humidity: </li>
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-lg-2.5">
                             <div class="card-body">
                                 <h1 class="card-header">Date</h1>
                                 <li class="list-group-item">Temp: </li>
-                                <li class="list-group-item">Wind </li>
+                                <li class="list-group-item">Wind: </li>
                                 <li class="list-group-item">Humidity: </li>
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-lg-2.5">
                             <div class="card-body">
                                 <h1 class="card-header">Date</h1>
                                 <li class="list-group-item">Temp: </li>
-                                <li class="list-group-item">Wind </li>
+                                <li class="list-group-item">Wind: </li>
                                 <li class="list-group-item">Humidity: </li>
                             </div>
                         </div>
                     </div>
-                
-                
+                </div>
+            </div>
             
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
