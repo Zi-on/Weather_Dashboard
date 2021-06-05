@@ -10,7 +10,7 @@
 //     .then(function(response) {
 //         console.log(response.json());
 //     })
-
+var today = moment().format('l')
 var searchArea = $("#searchArea");
 var searchBtn = $('#search');
 
@@ -31,7 +31,7 @@ document.getElementById("day5").innerHTML = day5
 searchBtn.on("click", function (event) {
     
     var city = searchArea.val().trim();
-    var cityApi = "http://api.openweathermap.org/geo/1.0/direct?q="+city+",tx,US&limit=5&appid=d727e0c365295376fcdf1f7932a17a35"
+    var cityApi = "http://api.openweathermap.org/geo/1.0/direct?q="+city+"&limit=5&appid=d727e0c365295376fcdf1f7932a17a35"
   
     fetch(cityApi, {
     
@@ -45,7 +45,7 @@ searchBtn.on("click", function (event) {
         console.log("Longitude: " + data[0].lon)
         localStorage.setItem("name", data[0].name)
         var weatherApiUrl = "https://api.openweathermap.org/data/2.5/onecall?lat="+data[0].lat+"&lon="+data[0].lon+"&exclude={part}&units=imperial&appid=d727e0c365295376fcdf1f7932a17a35"
-        document.getElementById("cityName").innerHTML = data[0].name
+        document.getElementById("cityName").innerHTML = data[0].name + " " + today
 
         fetch(weatherApiUrl, {
 
@@ -57,11 +57,8 @@ searchBtn.on("click", function (event) {
         .then(function(data) {
             console.log(data)
             console.log(data.current.temp)
-            localStorage.setItem("current temp", data.current.temp)
-            localStorage.setItem("current wind speed", data.current.wind_speed)
-            localStorage.setItem("current humidity", data.current.humidity)
-            localStorage.setItem("UV index", data.current.uvi)
-
+            
+            document.getElementById("currentIcon").innerHTML = data.current.weather[0].icon
             document.getElementById("currentTemp").innerHTML = "Temp: "+data.current.temp
             document.getElementById("currentWind").innerHTML = "Wind: "+data.current.wind_speed
             document.getElementById("currentHumidity").innerHTML = "Humidity: "+data.current.humidity
