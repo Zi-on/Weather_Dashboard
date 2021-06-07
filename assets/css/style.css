@@ -12,9 +12,41 @@
     display: none;
 }
 
+.card-title {
+    font-size: 20px;
+    text-align: center;
+    color: white;
+}
+
 .addedSearch {
     background-color: rgb(41, 41, 179);
     width: 100%;
-    height: 5vh;
+    height: 6vh;
     color: white;
+    
+}
+
+.city-search {
+    max-height: 100%;
+    border:none;
+    
+}
+
+.search-card {
+    background-color:rgb(41, 41, 179);
+}
+
+.card-header {
+    background-color: white;
+   
+}
+
+.list-group-item {
+    border: none;
+    
+    
+}
+
+.icon{
+   
 }
