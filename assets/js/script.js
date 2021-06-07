@@ -2,23 +2,42 @@ var searchArea = $("#searchArea");
 var searchBtn = $('#search');
 var today = moment().format('l')
 
-var corsAnywhere = "https://cors-anywhere.herokuapp.com/"
-
-fetch(corsAnywhere, {
-
-})
-.then(function(response) {
-return response.json
-})
-.then(function(data) {
-    console.log(data);
-})
 
 searchBtn.on("click", function (event) {
-    
-    var city = searchArea.val().trim();
-    var cityApi = "http://api.openweathermap.org/geo/1.0/direct?q="+city+"&limit=5&appid=d727e0c365295376fcdf1f7932a17a35"
+
   
+
+    var addSearch = function(){
+    var city = searchArea.val().trim();
+    var createButton = document.createElement('button');
+    var addedSearch = $("#searchItem")
+    console.log(addedSearch)
+    
+
+    if (city == "" || city == addedSearch)  {
+        console.log("what the fuck")
+    }
+    else {
+    createButton.innerHTML = city;
+    createButton.classList.add("addedSearch")
+    createButton.setAttribute("id", "searchItem")
+    document.getElementById("searchBar").appendChild(createButton);
+    }
+}
+
+    var city = searchArea.val().trim();
+    console.log(city)
+    // var savedSearch = document.createElement('button');
+    // savedSearch.innerHTML = city;
+    // savedSearch.classList.add("addedSearch")
+
+    // document.getElementById("searchBar").appendChild(savedSearch);
+    
+
+   addSearch();
+    
+    var cityApi = "https://api.openweathermap.org/geo/1.0/direct?q="+city+"&limit=5&appid=d727e0c365295376fcdf1f7932a17a35"
+   
     fetch(cityApi, {
     
 })
@@ -40,11 +59,11 @@ searchBtn.on("click", function (event) {
         })
         .then(function(data) {
             console.log(data)
-            var currentIcon = "http://openweathermap.org/img/wn/" + data.current.weather[0].icon + "@2x.png"  
+            var currentIcon = "https://openweathermap.org/img/wn/" + data.current.weather[0].icon + "@2x.png"  
             $("#icon").attr("src", currentIcon)
 
             for (var i = 0; i < 5; i++) {
-                $("#icon"+i).attr("src", "http://openweathermap.org/img/wn/" + data.daily[i].weather[0].icon + "@2x.png")
+                $("#icon"+i).attr("src", "https://openweathermap.org/img/wn/" + data.daily[i].weather[0].icon + "@2x.png")
             }
 
             document.getElementById("currentTemp").innerHTML = "Temp: "+data.current.temp+" "+"°F"
@@ -77,7 +96,7 @@ renderPage = function(){
     document.getElementById("day5").innerHTML = day5
 
     var lastSearched = localStorage.getItem("name")
-    var cityApi = "http://api.openweathermap.org/geo/1.0/direct?q="+lastSearched+"&limit=5&appid=d727e0c365295376fcdf1f7932a17a35"
+    var cityApi = "https://api.openweathermap.org/geo/1.0/direct?q="+lastSearched+"&limit=5&appid=d727e0c365295376fcdf1f7932a17a35"
   
     fetch(cityApi, {
     
@@ -97,12 +116,12 @@ renderPage = function(){
             return response.json();
         })
         .then(function(data) {
-            var currentIcon = "http://openweathermap.org/img/wn/" + data.current.weather[0].icon + "@2x.png"
+            var currentIcon = "https://openweathermap.org/img/wn/" + data.current.weather[0].icon + "@2x.png"
 
             
             $("#icon").attr("src", currentIcon)
             for (var i = 0; i < 5; i++) {
-                $("#icon"+i).attr("src", "http://openweathermap.org/img/wn/" + data.daily[i].weather[0].icon + "@2x.png")
+                $("#icon"+i).attr("src", "https://openweathermap.org/img/wn/" + data.daily[i].weather[0].icon + "@2x.png")
             }
 
             document.getElementById("currentTemp").innerHTML = "Temp: "+data.current.temp+" "+"°F"
