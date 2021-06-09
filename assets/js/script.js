@@ -10,22 +10,26 @@ searchBtn.on("click", function (event) {
     var addedSearch = $("#searchItem").innerHTML
     var city = searchArea.val().trim();
     
-    // var city = searchArea.val().trim();
+    var city = searchArea.val().trim();
+    createButton.onclick = function (event) {
     if (city === "" || city === addedSearch)  {
         console.log("what the f");
         return;
     }
     else {
+        event.target.innerHTML
+        console.log(x)
+
     createButton.innerHTML = city;
     createButton.classList.add("addedSearch")
     createButton.setAttribute("id", "searchItem")
     document.getElementById("searchBar").appendChild(createButton);
-  
+   
     }
 
     
     console.log(city)
-
+    
     
     var cityApi = "https://api.openweathermap.org/geo/1.0/direct?q="+city+"&limit=5&appid=d727e0c365295376fcdf1f7932a17a35"
    
@@ -53,6 +57,8 @@ searchBtn.on("click", function (event) {
             var currentIcon = "https://openweathermap.org/img/wn/" + data.current.weather[0].icon + "@2x.png"  
             var uvi = document.getElementById("currentUvi")
             $("#icon").attr("src", currentIcon)
+
+            console.log(uvi)
 
             for (var i = 0; i < 5; i++) {
                 $("#icon"+i).attr("src", "https://openweathermap.org/img/wn/" + data.daily[i].weather[0].icon + "@2x.png")
