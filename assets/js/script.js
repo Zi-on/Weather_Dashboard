@@ -9,27 +9,33 @@ searchBtn.on("click", function (event) {
     var createButton = document.createElement('button');
     var addedSearch = $("#searchItem").innerHTML
     var city = searchArea.val().trim();
+
+    createButton.onclick = function (event) { 
+        console.log(event.target)
+        console.log("hi")
+
+        
+    }
     
     var city = searchArea.val().trim();
-    createButton.onclick = function (event) {
-    if (city === "" || city === addedSearch)  {
-        console.log("what the f");
-        return;
-    }
-    else {
-        event.target.innerHTML
-        console.log(x)
+    // createButton.onclick, function (event) {
+    // if (city === "" || city === addedSearch)  {
+    //     console.log("what the f");
+    //     return;
+    // }
+    // else {
+    //     event.target.innerHTML
 
-    createButton.innerHTML = city;
-    createButton.classList.add("addedSearch")
-    createButton.setAttribute("id", "searchItem")
-    document.getElementById("searchBar").appendChild(createButton);
+    // createButton.innerHTML = city;
+    // createButton.classList.add("addedSearch")
+    // createButton.setAttribute("id", "searchItem")
+    // document.getElementById("searchBar").appendChild(createButton);
    
-    }
+    // }
 
     
-    console.log(city)
-    
+    // console.log(city)
+    // })
     
     var cityApi = "https://api.openweathermap.org/geo/1.0/direct?q="+city+"&limit=5&appid=d727e0c365295376fcdf1f7932a17a35"
    
