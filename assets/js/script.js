@@ -1,40 +1,31 @@
 var searchArea = $("#searchArea");
 var searchBtn = $('#search');
 var today = moment().format('l')
+var city = searchArea.val().trim();
 
 
 searchBtn.on("click", function (event) {
 
-  
-
-    var addSearch = function(){
-    var city = searchArea.val().trim();
     var createButton = document.createElement('button');
-    var addedSearch = $("#searchItem")
-    console.log(addedSearch)
+    var addedSearch = $("#searchItem").innerHTML
+    var city = searchArea.val().trim();
     
-
-    if (city == "" || city == addedSearch)  {
-        console.log("what the fuck")
+    // var city = searchArea.val().trim();
+    if (city === "" || city === addedSearch)  {
+        console.log("what the f");
+        return;
     }
     else {
     createButton.innerHTML = city;
     createButton.classList.add("addedSearch")
     createButton.setAttribute("id", "searchItem")
     document.getElementById("searchBar").appendChild(createButton);
+  
     }
-}
 
-    var city = searchArea.val().trim();
-    console.log(city)
-    // var savedSearch = document.createElement('button');
-    // savedSearch.innerHTML = city;
-    // savedSearch.classList.add("addedSearch")
-
-    // document.getElementById("searchBar").appendChild(savedSearch);
     
+    console.log(city)
 
-   addSearch();
     
     var cityApi = "https://api.openweathermap.org/geo/1.0/direct?q="+city+"&limit=5&appid=d727e0c365295376fcdf1f7932a17a35"
    
@@ -60,16 +51,51 @@ searchBtn.on("click", function (event) {
         .then(function(data) {
             console.log(data)
             var currentIcon = "https://openweathermap.org/img/wn/" + data.current.weather[0].icon + "@2x.png"  
+            var uvi = document.getElementById("currentUvi")
             $("#icon").attr("src", currentIcon)
 
             for (var i = 0; i < 5; i++) {
                 $("#icon"+i).attr("src", "https://openweathermap.org/img/wn/" + data.daily[i].weather[0].icon + "@2x.png")
             }
+            
+            if (uvi > 8){
+                document.getElementById("currentUvi").classList.add("uviVeryHigh")
+            }
+            else if (8 > uvi > 5){
+                document.getElementById("currentUvi").classList.add("uviHigh")
+                console.log("hight")
+            }
+            else if (6 > uvi > 2){
+                document.getElementById("currentUvi").classList.add("uviModerate")
+            }
+            else if (uvi < 3){
+                document.getElementById("currentUvi").classList.add("uviLow")
+                console.log("low")
+            }
+
+
 
             document.getElementById("currentTemp").innerHTML = "Temp: "+data.current.temp+" "+"°F"
             document.getElementById("currentWind").innerHTML = "Wind: "+data.current.wind_speed+" "+"Mph"
             document.getElementById("currentHumidity").innerHTML = "Humidity: "+data.current.humidity+"%"
             document.getElementById("currentUvi").innerHTML = "UV index: "+data.current.uvi
+            console.log(data.current.uvi)
+            
+
+            // if (uvi > 8){
+            //     document.getElementById("currentUvi").classList.add("uviVeryHigh")
+            // }
+            // else if (8 > uvi > 5){
+            //     document.getElementById("currentUvi").classList.add("uviHigh")
+            //     console.log("hight")
+            // }
+            // else if (6 > uvi > 2){
+            //     document.getElementById("currentUvi").classList.add("uviModerate")
+            // }
+            // else if (uvi < 3){
+            //     document.getElementById("currentUvi").classList.add("uviLow")
+            //     console.log("low")
+            // }
 
             for (var i = 0; i < 5; i++) {
                 document.getElementById("day"+i+"Temp").innerHTML = "Temp: "+data.daily[i].temp.day+" "+"°F"
@@ -123,10 +149,25 @@ renderPage = function(){
             for (var i = 0; i < 5; i++) {
                 $("#icon"+i).attr("src", "https://openweathermap.org/img/wn/" + data.daily[i].weather[0].icon + "@2x.png")
             }
-
+            
             document.getElementById("currentTemp").innerHTML = "Temp: "+data.current.temp+" "+"°F"
             document.getElementById("currentWind").innerHTML = "Wind: "+data.current.wind_speed+" "+"Mph"
             document.getElementById("currentHumidity").innerHTML = "Humidity: "+data.current.humidity+"%"
+            
+
+            if (data.current.uvi > 8){
+                document.getElementById("currentUvi").classList.add("uviVeryHigh")
+                console.log('high')
+            }
+            else if (8 > data.current.uvi > 5){
+                document.getElementById("currentUvi").classList.add("uviHigh")
+            }
+            else if (6 > data.current.uvi > 2){
+                document.getElementById("currentUvi").classList.add("uviModerate")
+            }
+            else if (data.current.uvi < 3){
+                document.getElementById("currentUvi").classList.add("uviLow")
+            }
             document.getElementById("currentUvi").innerHTML = "UV index: "+data.current.uvi
 
             for (var i = 0; i < 5; i++) {

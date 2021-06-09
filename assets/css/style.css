@@ -50,3 +50,20 @@
 .icon{
    
 }
+
+.uviHigh {
+    background-color: orange;
+    width: 15vw
+}
+.uviModerate {
+    background-color:yellow;
+    width: 15vw
+}
+.uviLow {
+    background-color: green;
+    width: 15vw
+}
+.uviVeryHigh {
+    background-color: red;
+    width: 15vw
+}
