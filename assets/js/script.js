@@ -7,35 +7,11 @@ var city = searchArea.val().trim();
 searchBtn.on("click", function (event) {
 
     var createButton = document.createElement('button');
-    var addedSearch = $("#searchItem").innerHTML
-    var city = searchArea.val().trim();
-
-    createButton.onclick = function (event) { 
-        console.log(event.target)
-        console.log("hi")
-
-        
-    }
     
     var city = searchArea.val().trim();
-    // createButton.onclick, function (event) {
-    // if (city === "" || city === addedSearch)  {
-    //     console.log("what the f");
-    //     return;
-    // }
-    // else {
-    //     event.target.innerHTML
 
-    // createButton.innerHTML = city;
-    // createButton.classList.add("addedSearch")
-    // createButton.setAttribute("id", "searchItem")
-    // document.getElementById("searchBar").appendChild(createButton);
    
-    // }
-
-    
-    // console.log(city)
-    // })
+  
     
     var cityApi = "https://api.openweathermap.org/geo/1.0/direct?q="+city+"&limit=5&appid=d727e0c365295376fcdf1f7932a17a35"
    
@@ -93,21 +69,6 @@ searchBtn.on("click", function (event) {
             document.getElementById("currentUvi").innerHTML = "UV index: "+data.current.uvi
             console.log(data.current.uvi)
             
-
-            // if (uvi > 8){
-            //     document.getElementById("currentUvi").classList.add("uviVeryHigh")
-            // }
-            // else if (8 > uvi > 5){
-            //     document.getElementById("currentUvi").classList.add("uviHigh")
-            //     console.log("hight")
-            // }
-            // else if (6 > uvi > 2){
-            //     document.getElementById("currentUvi").classList.add("uviModerate")
-            // }
-            // else if (uvi < 3){
-            //     document.getElementById("currentUvi").classList.add("uviLow")
-            //     console.log("low")
-            // }
 
             for (var i = 0; i < 5; i++) {
                 document.getElementById("day"+i+"Temp").innerHTML = "Temp: "+data.daily[i].temp.day+" "+"°F"
