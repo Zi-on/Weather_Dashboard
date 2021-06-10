@@ -5,15 +5,10 @@ var city = searchArea.val().trim();
 
 
 searchBtn.on("click", function (event) {
-
-    var createButton = document.createElement('button');
     
-    var city = searchArea.val().trim();
-
-   
-  
+    var city = searchArea.val().trim(); // grabs the value the user inputs
     
-    var cityApi = "https://api.openweathermap.org/geo/1.0/direct?q="+city+"&limit=5&appid=d727e0c365295376fcdf1f7932a17a35"
+    var cityApi = "https://api.openweathermap.org/geo/1.0/direct?q="+city+"&limit=5&appid=d727e0c365295376fcdf1f7932a17a35"// creates api i use to gather the latitude and longitude
    
     fetch(cityApi, {
     
@@ -23,9 +18,10 @@ searchBtn.on("click", function (event) {
     })
     .then(function(data){
         console.log(data)
-        localStorage.setItem("name", data[0].name)
+        localStorage.setItem("name", data[0].name) // stores the name of the city to local storage to use for my render page function
+        // weather api is created with latitude and longitude gathered from the city api
         var weatherApiUrl = "https://api.openweathermap.org/data/2.5/onecall?lat="+data[0].lat+"&lon="+data[0].lon+"&exclude={part}&units=imperial&appid=d727e0c365295376fcdf1f7932a17a35"
-        document.getElementById("cityName").innerHTML = data[0].name + " " + moment().format("l")
+        document.getElementById("cityName").innerHTML = data[0].name + " " + moment().format("l") // sets the city name area to the name of searched city and inputs the current date
 
         fetch(weatherApiUrl, {
 
@@ -36,16 +32,17 @@ searchBtn.on("click", function (event) {
         })
         .then(function(data) {
             console.log(data)
-            var currentIcon = "https://openweathermap.org/img/wn/" + data.current.weather[0].icon + "@2x.png"  
-            var uvi = document.getElementById("currentUvi")
-            $("#icon").attr("src", currentIcon)
+            var currentIcon = "https://openweathermap.org/img/wn/" + data.current.weather[0].icon + "@2x.png" // creates the img url for appropriate weather icon
+            var uvi = document.getElementById("currentUvi") // sets current uvi
+            $("#icon").attr("src", currentIcon) // sets the img src to the current icon url
 
             console.log(uvi)
 
+            // this for loop sets the 5 day forcast to the appropriate icon
             for (var i = 0; i < 5; i++) {
                 $("#icon"+i).attr("src", "https://openweathermap.org/img/wn/" + data.daily[i].weather[0].icon + "@2x.png")
             }
-            
+            // these if/else if statements set the appropriate class to the uvi 
             if (uvi > 8){
                 document.getElementById("currentUvi").classList.add("uviVeryHigh")
             }
@@ -62,14 +59,14 @@ searchBtn.on("click", function (event) {
             }
 
 
-
+            // sets the weather data for current weather
             document.getElementById("currentTemp").innerHTML = "Temp: "+data.current.temp+" "+"°F"
             document.getElementById("currentWind").innerHTML = "Wind: "+data.current.wind_speed+" "+"Mph"
             document.getElementById("currentHumidity").innerHTML = "Humidity: "+data.current.humidity+"%"
             document.getElementById("currentUvi").innerHTML = "UV index: "+data.current.uvi
             console.log(data.current.uvi)
             
-
+            // sets the weather data for 5 day forcast
             for (var i = 0; i < 5; i++) {
                 document.getElementById("day"+i+"Temp").innerHTML = "Temp: "+data.daily[i].temp.day+" "+"°F"
                 document.getElementById("day"+i+"Wind").innerHTML = "Wind: "+data.daily[i].wind_speed+" "+"Mph"
@@ -81,7 +78,7 @@ searchBtn.on("click", function (event) {
    
 })
    
-
+// render page function sets the days for the 5 day forcast and renders the page based on last searched city
 renderPage = function(){
     var day1 = moment().add(1, 'days').format('ddd')
     var day2 = moment().add(2, 'days').format('ddd')
