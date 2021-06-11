@@ -37,34 +37,30 @@ searchBtn.on("click", function (event) {
             $("#icon").attr("src", currentIcon) // sets the img src to the current icon url
 
             console.log(uvi)
+            // sets the weather data for current weather
+            document.getElementById("currentTemp").innerHTML = "Temp: "+data.current.temp+" "+"°F"
+            document.getElementById("currentWind").innerHTML = "Wind: "+data.current.wind_speed+" "+"Mph"
+            document.getElementById("currentHumidity").innerHTML = "Humidity: "+data.current.humidity+"%"
+            document.getElementById("currentUvi").innerHTML = "UV index: "+data.current.uvi
 
             // this for loop sets the 5 day forcast to the appropriate icon
             for (var i = 0; i < 5; i++) {
                 $("#icon"+i).attr("src", "https://openweathermap.org/img/wn/" + data.daily[i].weather[0].icon + "@2x.png")
             }
             // these if/else if statements set the appropriate class to the uvi 
-            if (uvi > 8){
-                document.getElementById("currentUvi").classList.add("uviVeryHigh")
+            if (data.current.uvi < 3){
+                document.getElementById("currentUvi").classList.add("uviLow")
             }
-            else if (8 > uvi > 5){
-                document.getElementById("currentUvi").classList.add("uviHigh")
-                console.log("hight")
-            }
-            else if (6 > uvi > 2){
+            if (data.current.uvi > 3 && data.current.uvi < 6){
                 document.getElementById("currentUvi").classList.add("uviModerate")
             }
-            else if (uvi < 3){
-                document.getElementById("currentUvi").classList.add("uviLow")
-                console.log("low")
+            if (data.current.uvi > 6 && data.current.uvi < 8){
+                document.getElementById("currentUvi").classList.add("uviHigh")
+            }
+            if (data.current.uvi > 8){
+                document.getElementById("currentUvi").classList.add("uviVeryHigh")
             }
 
-
-            // sets the weather data for current weather
-            document.getElementById("currentTemp").innerHTML = "Temp: "+data.current.temp+" "+"°F"
-            document.getElementById("currentWind").innerHTML = "Wind: "+data.current.wind_speed+" "+"Mph"
-            document.getElementById("currentHumidity").innerHTML = "Humidity: "+data.current.humidity+"%"
-            document.getElementById("currentUvi").innerHTML = "UV index: "+data.current.uvi
-            console.log(data.current.uvi)
             
             // sets the weather data for 5 day forcast
             for (var i = 0; i < 5; i++) {
@@ -113,8 +109,6 @@ renderPage = function(){
         })
         .then(function(data) {
             var currentIcon = "https://openweathermap.org/img/wn/" + data.current.weather[0].icon + "@2x.png"
-
-            
             $("#icon").attr("src", currentIcon)
             for (var i = 0; i < 5; i++) {
                 $("#icon"+i).attr("src", "https://openweathermap.org/img/wn/" + data.daily[i].weather[0].icon + "@2x.png")
@@ -123,21 +117,6 @@ renderPage = function(){
             document.getElementById("currentTemp").innerHTML = "Temp: "+data.current.temp+" "+"°F"
             document.getElementById("currentWind").innerHTML = "Wind: "+data.current.wind_speed+" "+"Mph"
             document.getElementById("currentHumidity").innerHTML = "Humidity: "+data.current.humidity+"%"
-            
-
-            if (data.current.uvi > 8){
-                document.getElementById("currentUvi").classList.add("uviVeryHigh")
-                console.log('high')
-            }
-            else if (8 > data.current.uvi > 5){
-                document.getElementById("currentUvi").classList.add("uviHigh")
-            }
-            else if (6 > data.current.uvi > 2){
-                document.getElementById("currentUvi").classList.add("uviModerate")
-            }
-            else if (data.current.uvi < 3){
-                document.getElementById("currentUvi").classList.add("uviLow")
-            }
             document.getElementById("currentUvi").innerHTML = "UV index: "+data.current.uvi
 
             for (var i = 0; i < 5; i++) {
@@ -145,8 +124,33 @@ renderPage = function(){
                 document.getElementById("day"+i+"Wind").innerHTML = "Wind: "+data.daily[i].wind_speed+" "+"Mph"
                 document.getElementById("day"+i+"Humidity").innerHTML = "Humidity: "+data.daily[i].humidity+"%"  
             }
+            if (data.current.uvi < 3){
+                document.getElementById("currentUvi").classList.add("uviLow")
+            }
+            if (data.current.uvi > 3 && data.current.uvi < 6){
+                document.getElementById("currentUvi").classList.add("uviModerate")
+            }
+            if (data.current.uvi > 6 && data.current.uvi < 8){
+                document.getElementById("currentUvi").classList.add("uviHigh")
+            }
+            if (data.current.uvi > 8){
+                document.getElementById("currentUvi").classList.add("uviVeryHigh")
+            }
+
         })
     })
 }
 
 renderPage()
+
+// if (data.current.uvi > 8){
+//     document.getElementById("currentUvi").classList.add("uviVeryHigh")
+//     console.log('high')
+// }
+// else if (8 > data.current.uvi > 5){
+//     document.getElementById("currentUvi").classList.add("uviHigh")
+// }
+// else if (6 > data.current.uvi > 2){
+//     document.getElementById("currentUvi").classList.add("uviModerate")
+// }
+// else 
